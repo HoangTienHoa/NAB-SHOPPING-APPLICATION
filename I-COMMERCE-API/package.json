@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "I-COMMERCE-API Application",
   "main": "index.js",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "scripts": {
     "start": "node ./src/server.js",
     "devStart": "nodemon ./src/server.js",
+    "initMockData": "node ./src/common/initMockData.js",
     "test": "jest",
     "testWatch": "jest --watchAll",
     "testCoverage": "jest --coverage"

@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-
+const config = require('../config');
 const connectMongodDB = () =>
     new Promise((resolve, reject) => {
-        const mongoUri = process.env.DB_LOCAL_CONNECTION;
+        const mongoUri = config.DB_LOCAL_CONNECTION;
         const options = {
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useUnifiedTopology: true
         };
 
         if (!mongoUri)
@@ -12,7 +13,7 @@ const connectMongodDB = () =>
 
         mongoose.connect(mongoUri, options, () => {
             console.log('I-COMMERCE-API connected to DB:' + mongoUri);
-            resolve();
+            resolve(mongoose);
         });
     });
 module.exports = connectMongodDB;

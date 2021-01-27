@@ -3,8 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const connectMongodDB = require('./common/mongoDB');
-//Use .evn file to set environment constants
-require('dotenv/config');
+const config = require('./config');
+// //Use .evn file to set environment constants
+// require('dotenv/config');
 
 app.use(bodyParser.json());
 const createServer = async () => {
@@ -14,6 +15,6 @@ const createServer = async () => {
 
 createServer();
 
-app.listen(process.env.PORT, function () {
-  console.log(`I-COMMERCE-API listening on ${process.env.PORT}`);
+app.listen(config.PORT, function () {
+  console.log(`I-COMMERCE-API listening on ${config.PORT}`);
 });
