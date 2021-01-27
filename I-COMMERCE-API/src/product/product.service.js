@@ -2,8 +2,8 @@ const productRepository = require('./product.repository');
 
 const getAllProducts = async () => {
     try {
-        const productData = await productRepository.getAllProducts();
-        return productData;
+        const productResolve = await productRepository.getAllProducts();
+        return productResolve;
     } catch (err) {
         throw err;
     }
@@ -11,8 +11,8 @@ const getAllProducts = async () => {
 
 const saveAProduct = async (product) => {
     try {
-        const productData = await productRepository.saveAProduct(product);
-        return productData;
+        const productResolve = await productRepository.saveAProduct(product);
+        return productResolve;
     } catch (err) {
         throw err;
     }
@@ -21,13 +21,29 @@ const saveAProduct = async (product) => {
 
 const deleteAllProducts = async () => {
     try {
-        const productData = await productRepository.deleteAllProducts();
-        return productData;
+        const productResolve = await productRepository.deleteAllProducts();
+        return productResolve;
     } catch (err) {
         throw err;
     }
 };
-// if (!productData) {
-//     throw new Error(CUSTOMER_NOT_EXISTED);/////
-// }
-module.exports = { getAllProducts, saveAProduct, deleteAllProducts };
+
+const searchProducts = async (info) => {
+    try {
+        const productResolve = await productRepository.searchProducts(info);
+        return productResolve;
+    } catch (err) {
+        throw err;
+    }
+}
+
+const sortProducts = async (colName, colOrder) => {
+    try {
+        const productResolve = await productRepository.sortProducts(colName, colOrder);
+        return productResolve;
+    } catch (err) {
+        throw err;
+    }
+}
+
+module.exports = { getAllProducts, saveAProduct, deleteAllProducts, searchProducts, sortProducts };
