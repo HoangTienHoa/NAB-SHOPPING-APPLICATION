@@ -45,5 +45,13 @@ const sortProducts = async (colName, colOrder) => {
         throw err;
     }
 }
+const filterProducts = async (fromPrice, toPrice) => {
+    try {
+        const productResolve = await productRepository.filterProducts(fromPrice, toPrice);
+        return productResolve;
+    } catch (err) {
+        throw err;
+    }
+}
 
-module.exports = { getAllProducts, saveAProduct, deleteAllProducts, searchProducts, sortProducts };
+module.exports = { getAllProducts, saveAProduct, deleteAllProducts, searchProducts, sortProducts, filterProducts };

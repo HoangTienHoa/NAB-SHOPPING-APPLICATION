@@ -67,17 +67,11 @@ const sortProducts = async (colName, colOrder) => {
 
 //Filter products by price
 const filterProducts = async (fromPrice, toPrice) => {
-    //     try {
-    //         const productResolve = await Product.aggregate(
-    //             { $filter: { price: { $eq: "Joe Bloggs" } } }
-    //         );
-    //         return productResolve;
-    //         //$and: [
-    //         // { $or: [{ qty: { $lt: 10 } }, { qty: { $gt: 50 } }] },
-    //         // { $or: [{ sale: true }, { price: { $lt: 5 } }] }
-    //     ]
-    //     } catch (err) {
-    //     throw err;
-    // }
+    try {
+        const productResolve = await Product.find({ price: { $gte: fromPrice, $lte: toPrice } });
+        return productResolve;
+    } catch (err) {
+        throw err;
+    }
 }
-module.exports = { getAllProducts, saveAProduct, deleteAllProducts, searchProducts, sortProducts };
+module.exports = { getAllProducts, saveAProduct, deleteAllProducts, searchProducts, sortProducts, filterProducts };
