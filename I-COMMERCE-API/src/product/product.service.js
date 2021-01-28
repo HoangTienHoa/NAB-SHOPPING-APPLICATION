@@ -54,4 +54,33 @@ const filterProducts = async (fromPrice, toPrice) => {
     }
 }
 
-module.exports = { getAllProducts, saveAProduct, deleteAllProducts, searchProducts, sortProducts, filterProducts };
+const updateProduct = async (product) => {
+    try {
+        const productResolve = await productRepository.updateProduct(product);
+        return productResolve;
+    } catch (err) {
+        throw err;
+    }
+};
+
+const recheckOrderProduct = async (productId, amount) => {
+    try {
+        const productResolve = await productRepository.recheckOrderProduct(productId, amount);
+        return productResolve;
+    } catch (err) {
+        throw err;
+    }
+};
+
+
+
+module.exports = {
+    getAllProducts,
+    saveAProduct,
+    deleteAllProducts,
+    searchProducts,
+    sortProducts,
+    filterProducts,
+    updateProduct,
+    recheckOrderProduct
+};

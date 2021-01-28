@@ -1,4 +1,6 @@
 const Product = require('./product.model');
+const config = require('./product.constant');
+const constant = require('./product.constant');
 
 //Get all products
 const getAllProducts = async () => {
@@ -74,4 +76,55 @@ const filterProducts = async (fromPrice, toPrice) => {
         throw err;
     }
 }
-module.exports = { getAllProducts, saveAProduct, deleteAllProducts, searchProducts, sortProducts, filterProducts };
+//Update a product
+const updateProduct = async (product) => {
+    try {
+        const productResolve = await Product.updateOne({ id: product.id },
+            {
+                $set: {
+                    name: product.name,
+                    price: product.price,
+                    amount: product.amount,
+                    branch: product.branch,
+                    color: product.color,
+                    isDeleted: product.isDeleted,
+                    createdAt: product.createdAt,
+                    modifiedAt: product.modifiedAt
+                }
+            });
+        return productResolve;
+    } catch (err) {
+        throw err;
+    }
+}
+
+//Recheck Order a product
+const recheckOrderProduct = async (productId, amount) => {
+    try {
+        const product = await Product.findOne({ id: productId });
+        //In case can not found a product
+        if (product == null)
+            throw new Error(config.PRODUCT_NOT_EXIST);
+        //In case not enought amount
+        if (product.amount < amount)
+            throw new Error(config.AMOUNT_NOT_ENOUGHT);
+
+        //Update Product info
+        product.amount -= amount;
+        product.modifiedAt = Date.now();
+        return product;
+    } catch (err) {
+        throw err;
+    }
+};
+
+module.exports = {
+    getAllProducts,
+    saveAProduct,
+    deleteAllProducts,
+    searchProducts,
+    sortProducts,
+    filterProducts,
+    updateProduct,
+    recheckOrderProduct
+};

@@ -1,11 +1,17 @@
-const connectMongodDB = require('../mongoDB');
+// const connectMongodDB = require('../mongoDB');
 
-describe("Checking Mongo DB connection", () => {
-    test('connectMongodDB is a function', () => {
-        expect(typeof connectMongodDB).toEqual('function');
-    })
+// describe("Checking Mongo DB connection", () => {
+//     test('Should is a function', () => {
+//         expect(typeof connectMongodDB).toEqual('function');
+//     })
 
-    test('connectMongodDB function exists', () => {
-        expect(connectMongodDB).toBeDefined();
-    });
-});
+//     test('Should is defined', () => {
+//         expect(connectMongodDB).toBeDefined();
+//     });
+
+//     // test('Should show message "Database connected"', () => {
+//     //     connectMongodDB().then((data) => {
+//     //         expect(data).toEqual("Database connected");
+//     //     });
+//     // });
+// });

@@ -13,7 +13,7 @@ const connectMongodDB = () =>
 
         mongoose.connect(mongoUri, options, () => {
             console.log('I-COMMERCE-API connected to DB:' + mongoUri);
-            resolve(mongoose);
+            resolve("Database connected");
         });
     });
 module.exports = connectMongodDB;

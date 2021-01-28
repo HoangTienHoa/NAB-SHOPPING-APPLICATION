@@ -15,4 +15,12 @@ function validationFilter(filter) {
     return schema.validate(filter);
 }
 
-module.exports = { validationSort, validationFilter };
+function validationOrder(order) {
+    const schema = Joi.object({
+        productId: Joi.number(),
+        amount: Joi.number().greater(0)
+    });
+    return schema.validate(order);
+}
+
+module.exports = { validationSort, validationFilter, validationOrder };
