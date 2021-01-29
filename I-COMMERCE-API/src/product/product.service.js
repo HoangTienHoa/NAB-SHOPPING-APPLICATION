@@ -1,9 +1,9 @@
 const productRepository = require('./product.repository');
-
+const constant = require('./product.constant');
 //Get all products
 const getAllProducts = async () => {
     try {
-        const productResolve = await productRepository.getAllProducts();
+        const productResolve = await productRepository.find();
         return productResolve;
     } catch (err) {
         throw err;
@@ -11,9 +11,9 @@ const getAllProducts = async () => {
 };
 
 //Get a product
-const getAProducts = async (productId) => {
+const getAProduct = async (productId) => {
     try {
-        const productResolve = await productRepository.getAProducts(productId);
+        const productResolve = await productRepository.findOne(productId);
         return productResolve;
     } catch (err) {
         throw err;
@@ -23,7 +23,7 @@ const getAProducts = async (productId) => {
 //Save a product
 const saveAProduct = async (product) => {
     try {
-        const productResolve = await productRepository.saveAProduct(product);
+        const productResolve = await productRepository.save(product);
         return productResolve;
     } catch (err) {
         throw err;
@@ -33,7 +33,7 @@ const saveAProduct = async (product) => {
 //Delete all products
 const deleteAllProducts = async () => {
     try {
-        const productResolve = await productRepository.deleteAllProducts();
+        const productResolve = await productRepository.deleteMany();
         return productResolve;
     } catch (err) {
         throw err;
@@ -43,7 +43,7 @@ const deleteAllProducts = async () => {
 //Search products by name, branch, color
 const searchProducts = async (info) => {
     try {
-        const productResolve = await productRepository.searchProducts(info);
+        const productResolve = await productRepository.findProducts(info);
         return productResolve;
     } catch (err) {
         throw err;
@@ -72,7 +72,7 @@ const filterProducts = async (fromPrice, toPrice) => {
 //Update a product
 const updateProduct = async (product) => {
     try {
-        const productResolve = await productRepository.updateProduct(product);
+        const productResolve = await productRepository.updateOne(product);
         return productResolve;
     } catch (err) {
         throw err;
@@ -82,8 +82,21 @@ const updateProduct = async (product) => {
 //Recheck Order a product
 const recheckOrderProduct = async (productId, amount) => {
     try {
-        const productResolve = await productRepository.recheckOrderProduct(productId, amount);
-        return productResolve;
+        //Find a product
+        const product = await productRepository.findOne(productId);
+
+        //In case can not found a product
+        if (product == null)
+            throw new Error(constant.PRODUCT_NOT_EXIST);
+
+        //In case not enought amount
+        if (product.amount < amount)
+            throw new Error(constant.AMOUNT_NOT_ENOUGHT);
+
+        //Update Product info
+        product.amount -= amount;
+        product.modifiedAt = Date.now();
+        return product;
     } catch (err) {
         throw err;
     }
@@ -93,7 +106,7 @@ const recheckOrderProduct = async (productId, amount) => {
 
 module.exports = {
     getAllProducts,
-    getAProducts,
+    getAProduct,
     saveAProduct,
     deleteAllProducts,
     searchProducts,

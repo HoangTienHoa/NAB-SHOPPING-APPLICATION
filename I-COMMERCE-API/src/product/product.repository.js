@@ -1,21 +1,16 @@
 const Product = require('./product.model');
-const config = require('./product.constant');
-const constant = require('./product.constant');
 
-//Get all products
-const getAllProducts = async () => {
+const find = async () => {
     const productResolve = await Product.find();
     return productResolve;
 };
 
-//Get a product
-const getAProducts = async (productId) => {
+const findOne = async (productId) => {
     const productResolve = await Product.findOne({ id: productId });
     return productResolve;
 };
 
-//Save a product
-const saveAProduct = async (productData) => {
+const save = async (productData) => {
     const product = new Product({
         id: productData.id,
         name: productData.name,
@@ -33,8 +28,7 @@ const saveAProduct = async (productData) => {
     }
 };
 
-//Delete all products
-const deleteAllProducts = async () => {
+const deleteMany = async () => {
     try {
         const productResolve = await Product.deleteMany({});
         return productResolve;
@@ -43,8 +37,7 @@ const deleteAllProducts = async () => {
     }
 };
 
-//Search products by name, branch, color
-const searchProducts = async (info) => {
+const findProducts = async (info) => {
     try {
         const productResolve = await Product.find(
             {
@@ -61,7 +54,6 @@ const searchProducts = async (info) => {
     }
 }
 
-//Sort products by column
 const sortProducts = async (colName, colOrder) => {
     try {
         const sort = {};
@@ -73,7 +65,6 @@ const sortProducts = async (colName, colOrder) => {
     }
 }
 
-//Filter products by price
 const filterProducts = async (fromPrice, toPrice) => {
     try {
         const productResolve = await Product.find({ price: { $gte: fromPrice, $lte: toPrice } });
@@ -82,8 +73,8 @@ const filterProducts = async (fromPrice, toPrice) => {
         throw err;
     }
 }
-//Update a product
-const updateProduct = async (product) => {
+
+const updateOne = async (product) => {
     try {
         const productResolve = await Product.updateOne({ id: product.id },
             {
@@ -104,34 +95,13 @@ const updateProduct = async (product) => {
     }
 }
 
-//Recheck Order a product
-const recheckOrderProduct = async (productId, amount) => {
-    try {
-        const product = await Product.findOne({ id: productId });
-        //In case can not found a product
-        if (product == null)
-            throw new Error(config.PRODUCT_NOT_EXIST);
-        //In case not enought amount
-        if (product.amount < amount)
-            throw new Error(config.AMOUNT_NOT_ENOUGHT);
-
-        //Update Product info
-        product.amount -= amount;
-        product.modifiedAt = Date.now();
-        return product;
-    } catch (err) {
-        throw err;
-    }
-};
-
 module.exports = {
-    getAllProducts,
-    getAProducts,
-    saveAProduct,
-    deleteAllProducts,
-    searchProducts,
+    find,
+    findOne,
+    save,
+    deleteMany,
+    findProducts,
     sortProducts,
     filterProducts,
-    updateProduct,
-    recheckOrderProduct
+    updateOne
 };

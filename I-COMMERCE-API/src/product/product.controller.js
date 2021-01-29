@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 //Show A Product
 router.get('/:productId', async (req, res) => {
     try {
-        const productResolve = await productService.getAProducts(req.params.productId);
+        const productResolve = await productService.getAProduct(req.params.productId);
         return res.json(productResolve);
     } catch (err) {
         console.log({ message: err });
