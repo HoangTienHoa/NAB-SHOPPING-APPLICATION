@@ -1,6 +1,12 @@
 const Activities = require('./activities.model');
 
-//Save an activity
+//Get all activities
+const getAllActivities = async () => {
+    const resolve = await Activities.find();
+    return resolve;
+};
+
+//Save Activity
 const saveActivity = async (activityData) => {
     const activity = new Activities({
         customerId: activityData.customerId,
@@ -15,4 +21,4 @@ const saveActivity = async (activityData) => {
     }
 };
 
-module.exports = { saveActivity };
+module.exports = { getAllActivities, saveActivity };

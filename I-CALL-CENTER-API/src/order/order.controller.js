@@ -4,7 +4,18 @@ const router = express.Router();
 const orderService = require('./order.service');
 const constant = require('./order.constant');
 
-//Save An Order
+//Show all orders
+router.get('/', async (req, res) => {
+    try {
+        const orderResolve = await orderService.getAllOrders();
+        return res.json(orderResolve);
+    } catch (err) {
+        console.log({ message: err });
+        return res.status(500).send(constant.MONGODB_ERROR);
+    }
+});
+
+//Save an order
 router.post('/', async (req, res) => {
     try {
         const orderResolve = await orderService.saveAnOrder(req.body.order);

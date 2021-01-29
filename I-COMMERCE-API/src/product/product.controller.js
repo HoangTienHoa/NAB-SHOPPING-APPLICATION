@@ -7,7 +7,7 @@ const validator = require('./product.validator');
 const axios = require('axios');
 const config = require('../config');
 
-//Get All Products
+//Show All Products
 router.get('/', async (req, res) => {
     try {
         const productResolve = await productService.getAllProducts();
@@ -18,7 +18,18 @@ router.get('/', async (req, res) => {
     }
 });
 
-//Search By Name, Branch, Color
+//Show A Product
+router.get('/:productId', async (req, res) => {
+    try {
+        const productResolve = await productService.getAProducts(req.params.productId);
+        return res.json(productResolve);
+    } catch (err) {
+        console.log({ message: err });
+        return res.status(500).send(constant.MONGODB_ERROR);
+    }
+});
+
+//Search Products By Name, Branch, Color
 router.get('/search/:info', async (req, res) => {
     const info = req.params.info;
     try {
@@ -30,7 +41,7 @@ router.get('/search/:info', async (req, res) => {
     }
 });
 
-//Sort By Column Name
+//Sort Products By Column Name
 router.get('/sort/:colName/:colOrder', async (req, res) => {
     const colName = req.params.colName;
     const colOrder = req.params.colOrder == "asc" ? 1 : -1;
@@ -49,7 +60,7 @@ router.get('/sort/:colName/:colOrder', async (req, res) => {
     }
 });
 
-//Filter By Price
+//Filter Products By Price
 router.get('/filter/:fromPrice/:toPrice', async (req, res) => {
     const fromPrice = req.params.fromPrice;
     const toPrice = req.params.toPrice;

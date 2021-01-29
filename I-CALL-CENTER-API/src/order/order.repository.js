@@ -1,5 +1,11 @@
 const Order = require('./order.model');
 
+//Get all orders
+const getAllOrders = async () => {
+    const orderResolve = await Order.find();
+    return orderResolve;
+};
+
 //Save an order
 const saveAnOrder = async (orderData) => {
     const order = new Order({
@@ -16,4 +22,4 @@ const saveAnOrder = async (orderData) => {
     }
 };
 
-module.exports = { saveAnOrder };
+module.exports = { getAllOrders, saveAnOrder };

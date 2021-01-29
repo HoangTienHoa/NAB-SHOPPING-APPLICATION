@@ -1,5 +1,6 @@
 const productRepository = require('./product.repository');
 
+//Get all products
 const getAllProducts = async () => {
     try {
         const productResolve = await productRepository.getAllProducts();
@@ -9,6 +10,17 @@ const getAllProducts = async () => {
     }
 };
 
+//Get a product
+const getAProducts = async (productId) => {
+    try {
+        const productResolve = await productRepository.getAProducts(productId);
+        return productResolve;
+    } catch (err) {
+        throw err;
+    }
+};
+
+//Save a product
 const saveAProduct = async (product) => {
     try {
         const productResolve = await productRepository.saveAProduct(product);
@@ -18,7 +30,7 @@ const saveAProduct = async (product) => {
     }
 };
 
-
+//Delete all products
 const deleteAllProducts = async () => {
     try {
         const productResolve = await productRepository.deleteAllProducts();
@@ -28,6 +40,7 @@ const deleteAllProducts = async () => {
     }
 };
 
+//Search products by name, branch, color
 const searchProducts = async (info) => {
     try {
         const productResolve = await productRepository.searchProducts(info);
@@ -37,6 +50,7 @@ const searchProducts = async (info) => {
     }
 }
 
+//Sort products by column
 const sortProducts = async (colName, colOrder) => {
     try {
         const productResolve = await productRepository.sortProducts(colName, colOrder);
@@ -45,6 +59,7 @@ const sortProducts = async (colName, colOrder) => {
         throw err;
     }
 }
+//Filter products by price
 const filterProducts = async (fromPrice, toPrice) => {
     try {
         const productResolve = await productRepository.filterProducts(fromPrice, toPrice);
@@ -54,6 +69,7 @@ const filterProducts = async (fromPrice, toPrice) => {
     }
 }
 
+//Update a product
 const updateProduct = async (product) => {
     try {
         const productResolve = await productRepository.updateProduct(product);
@@ -63,6 +79,7 @@ const updateProduct = async (product) => {
     }
 };
 
+//Recheck Order a product
 const recheckOrderProduct = async (productId, amount) => {
     try {
         const productResolve = await productRepository.recheckOrderProduct(productId, amount);
@@ -76,6 +93,7 @@ const recheckOrderProduct = async (productId, amount) => {
 
 module.exports = {
     getAllProducts,
+    getAProducts,
     saveAProduct,
     deleteAllProducts,
     searchProducts,

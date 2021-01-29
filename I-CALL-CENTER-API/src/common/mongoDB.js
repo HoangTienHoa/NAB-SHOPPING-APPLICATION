@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('../config');
+
+//Create connection to mongo DB
 const connectMongodDB = () =>
     new Promise((resolve, reject) => {
         const mongoUri = config.DB_LOCAL_CONNECTION;

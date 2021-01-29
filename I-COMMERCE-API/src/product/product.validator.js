@@ -1,5 +1,6 @@
 const Joi = require('joi');
 
+//Validation for Sort Object
 function validationSort(sort) {
     const schema = Joi.object({
         colName: Joi.string().valid('id', 'name', 'price', 'amount', 'branch', 'color')
@@ -7,6 +8,7 @@ function validationSort(sort) {
     return schema.validate(sort);
 }
 
+//Validation for Filter Object
 function validationFilter(filter) {
     const schema = Joi.object({
         fromPrice: Joi.number(),
@@ -15,6 +17,7 @@ function validationFilter(filter) {
     return schema.validate(filter);
 }
 
+//Validation for Order Object
 function validationOrder(order) {
     const schema = Joi.object({
         productId: Joi.number(),

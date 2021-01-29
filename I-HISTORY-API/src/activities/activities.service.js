@@ -1,5 +1,16 @@
 const activityRepository = require('./activities.repository');
 
+//Get all activities
+const getAllActivities = async () => {
+    try {
+        const resolve = await activityRepository.getAllActivities();
+        return resolve;
+    } catch (err) {
+        throw err;
+    }
+};
+
+//Save Activity
 const saveActivity = async (activity) => {
     try {
         const resolve = await activityRepository.saveActivity(activity);
@@ -8,4 +19,4 @@ const saveActivity = async (activity) => {
         throw err;
     }
 };
-module.exports = { saveActivity };
+module.exports = { getAllActivities, saveActivity };

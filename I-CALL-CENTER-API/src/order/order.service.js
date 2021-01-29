@@ -1,5 +1,16 @@
 const orderRepository = require('./order.repository');
 
+//Get all orders
+const getAllOrders = async () => {
+    try {
+        const orderResolve = await orderRepository.getAllOrders();
+        return orderResolve;
+    } catch (err) {
+        throw err;
+    }
+};
+
+//Save an order
 const saveAnOrder = async (order) => {
     try {
         const orderResolve = await orderRepository.saveAnOrder(order);
@@ -8,4 +19,4 @@ const saveAnOrder = async (order) => {
         throw err;
     }
 };
-module.exports = { saveAnOrder };
+module.exports = { getAllOrders, saveAnOrder };

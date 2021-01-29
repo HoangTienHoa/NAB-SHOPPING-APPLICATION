@@ -8,6 +8,12 @@ const getAllProducts = async () => {
     return productResolve;
 };
 
+//Get a product
+const getAProducts = async (productId) => {
+    const productResolve = await Product.findOne({ id: productId });
+    return productResolve;
+};
+
 //Save a product
 const saveAProduct = async (productData) => {
     const product = new Product({
@@ -120,6 +126,7 @@ const recheckOrderProduct = async (productId, amount) => {
 
 module.exports = {
     getAllProducts,
+    getAProducts,
     saveAProduct,
     deleteAllProducts,
     searchProducts,

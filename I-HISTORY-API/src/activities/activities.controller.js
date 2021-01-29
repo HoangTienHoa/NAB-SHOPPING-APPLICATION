@@ -4,7 +4,18 @@ const router = express.Router();
 const activityService = require('./activities.service');
 const constant = require('./activities.constant');
 
-//Save An Activity
+//Show all activies
+router.get('/', async (req, res) => {
+    try {
+        const resolved = await activityService.getAllActivities();
+        return res.json(resolved);
+    } catch (err) {
+        console.log({ message: err });
+        return res.status(500).send(constant.MONGODB_ERROR);
+    }
+});
+
+//Save Activity
 router.post('/', async (req, res) => {
     try {
         const resolved = await activityService.saveActivity(req.body.activity);
