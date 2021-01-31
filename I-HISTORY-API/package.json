@@ -8,7 +8,6 @@
   },
   "scripts": {
     "start": "node ./src/server.js",
-    "devStart": "nodemon ./src/server.js",
     "test": "jest",
     "testCoverage": "jest --coverage"
   },

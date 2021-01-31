@@ -106,9 +106,14 @@ const recheckOrderProduct = async (productId, amount) => {
 };
 
 const sendActivities = async (req, res, next) => {
-    const producer = await KafkaProducer.getProducer();
-    KafkaProducer.sendMessage(producer, config.TOPIC_SAVE_ACTIVITIES, req.sessionID, req.path);
-    next();
+    try {
+        const producer = await KafkaProducer.getProducer();
+        KafkaProducer.sendMessage(producer, config.TOPIC_SAVE_ACTIVITIES, req.sessionID, req.path);
+    } catch (err) {
+        console.log(err);
+    } finally {
+        next();
+    }
 }
 
 module.exports = {

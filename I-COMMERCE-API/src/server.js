@@ -6,6 +6,7 @@ const connectMongodDB = require('./common/mongoDB');
 const config = require('./config');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const initMockData = require('./common/initMockData');
 
 app.use(cookieParser());
 app.use(session({
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 const createServer = async () => {
   routes(app);
   await connectMongodDB();
+  await initMockData();
   return "Created Server";
 }
 

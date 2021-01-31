@@ -8,8 +8,6 @@
   },
   "scripts": {
     "start": "node ./src/server.js",
-    "devStart": "nodemon ./src/server.js",
-    "initMockData": "node ./src/common/initMockData.js",
     "test": "jest",
     "testCoverage": "jest --coverage"
   },

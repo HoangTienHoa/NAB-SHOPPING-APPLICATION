@@ -1,4 +1,3 @@
-const connectMongodDB = require('./mongoDB');
 const productService = require('../product/product.service');
 
 //Create list mock Products
@@ -45,9 +44,6 @@ const products = [{
 
 //Init mock data for products.
 const initData = async () => {
-    //Connect to database
-    await connectMongodDB();
-
     //Clear all products
     await productService.deleteAllProducts();
     console.log("Clear all products");
@@ -56,12 +52,11 @@ const initData = async () => {
     const productList = products.map(product => productService.saveAProduct(product));
     Promise.all(productList)
         .then((data) => {
-            console.log("Init data for products successfully", data);
-            process.exit();
+            console.log("Init data for products successfully");
         })
         .catch((err) => {
             console.log("Init data for products error", err);
         });
 }
 
-initData();
+module.exports = initData;
