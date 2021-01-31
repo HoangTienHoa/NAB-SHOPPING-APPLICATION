@@ -8,7 +8,7 @@ const axios = require('axios');
 const config = require('../config');
 
 //Show All Products
-router.get('/', async (req, res) => {
+router.get('/', productService.sendActivities, async (req, res) => {
     try {
         const productResolve = await productService.getAllProducts();
         return res.json(productResolve);
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 });
 
 //Show A Product
-router.get('/:productId', async (req, res) => {
+router.get('/:productId', productService.sendActivities, async (req, res) => {
     try {
         const productResolve = await productService.getAProduct(req.params.productId);
         return res.json(productResolve);
@@ -30,7 +30,7 @@ router.get('/:productId', async (req, res) => {
 });
 
 //Search Products By Name, Branch, Color
-router.get('/search/:info', async (req, res) => {
+router.get('/search/:info', productService.sendActivities, async (req, res) => {
     const info = req.params.info;
     try {
         const productResolve = await productService.searchProducts(info);
@@ -42,7 +42,7 @@ router.get('/search/:info', async (req, res) => {
 });
 
 //Sort Products By Column Name
-router.get('/sort/:colName/:colOrder', async (req, res) => {
+router.get('/sort/:colName/:colOrder', productService.sendActivities, async (req, res) => {
     const colName = req.params.colName;
     const colOrder = req.params.colOrder == "asc" ? 1 : -1;
 
@@ -61,7 +61,7 @@ router.get('/sort/:colName/:colOrder', async (req, res) => {
 });
 
 //Filter Products By Price
-router.get('/filter/:fromPrice/:toPrice', async (req, res) => {
+router.get('/filter/:fromPrice/:toPrice', productService.sendActivities, async (req, res) => {
     const fromPrice = req.params.fromPrice;
     const toPrice = req.params.toPrice;
 
@@ -80,7 +80,7 @@ router.get('/filter/:fromPrice/:toPrice', async (req, res) => {
 });
 
 //Order a product
-router.get('/order/:productId/:amount', async (req, res) => {
+router.get('/order/:productId/:amount', productService.sendActivities, async (req, res) => {
     const productId = req.params.productId;
     const amount = req.params.amount;
     const customerId = req.sessionID;

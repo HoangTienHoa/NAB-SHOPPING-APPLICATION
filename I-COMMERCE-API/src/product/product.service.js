@@ -1,5 +1,8 @@
 const productRepository = require('./product.repository');
 const constant = require('./product.constant');
+const KafkaProducer = require('./product.producer');
+const config = require('../config');
+
 //Get all products
 const getAllProducts = async () => {
     try {
@@ -102,7 +105,11 @@ const recheckOrderProduct = async (productId, amount) => {
     }
 };
 
-
+const sendActivities = async (req, res, next) => {
+    const producer = await KafkaProducer.getProducer();
+    KafkaProducer.sendMessage(producer, config.TOPIC_SAVE_ACTIVITIES, req.sessionID, req.path);
+    next();
+}
 
 module.exports = {
     getAllProducts,
@@ -113,5 +120,6 @@ module.exports = {
     sortProducts,
     filterProducts,
     updateProduct,
-    recheckOrderProduct
+    recheckOrderProduct,
+    sendActivities
 };

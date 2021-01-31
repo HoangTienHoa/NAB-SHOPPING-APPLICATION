@@ -15,15 +15,4 @@ router.get('/', async (req, res) => {
     }
 });
 
-//Save Activity
-router.post('/', async (req, res) => {
-    try {
-        const resolved = await activityService.saveActivity(req.body.activity);
-        return res.status(200).json(resolved);
-    } catch (err) {
-        console.log({ message: err });
-        return res.status(500).send(constant.MONGODB_ERROR);
-    }
-});
-
 module.exports = router;
