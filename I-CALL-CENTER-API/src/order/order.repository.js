@@ -1,8 +1,8 @@
 const Order = require('./order.model');
 
 const find = async () => {
-    const orderResolve = await Order.find();
-    return orderResolve;
+    const result = await Order.find();
+    return result;
 };
 
 const save = async (orderData) => {
@@ -13,8 +13,8 @@ const save = async (orderData) => {
     });
 
     try {
-        const orderResolve = await order.save();
-        return orderResolve;
+        const result = await order.save();
+        return result;
     } catch (err) {
         throw err;
     }

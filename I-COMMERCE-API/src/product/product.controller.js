@@ -10,8 +10,8 @@ const config = require('../config');
 //Show All Products
 router.get('/', productService.sendActivities, async (req, res) => {
     try {
-        const productResolve = await productService.getAllProducts();
-        return res.json(productResolve);
+        const result = await productService.getAllProducts();
+        return res.json(result);
     } catch (err) {
         console.log({ message: err });
         return res.status(500).send(constant.MONGODB_ERROR);
@@ -21,8 +21,8 @@ router.get('/', productService.sendActivities, async (req, res) => {
 //Show A Product
 router.get('/:productId', productService.sendActivities, async (req, res) => {
     try {
-        const productResolve = await productService.getAProduct(req.params.productId);
-        return res.json(productResolve);
+        const result = await productService.getAProduct(req.params.productId);
+        return res.json(result);
     } catch (err) {
         console.log({ message: err });
         return res.status(500).send(constant.MONGODB_ERROR);
@@ -33,8 +33,8 @@ router.get('/:productId', productService.sendActivities, async (req, res) => {
 router.get('/search/:info', productService.sendActivities, async (req, res) => {
     const info = req.params.info;
     try {
-        const productResolve = await productService.searchProducts(info);
-        return res.json(productResolve);
+        const result = await productService.searchProducts(info);
+        return res.json(result);
     } catch (err) {
         console.log({ message: err });
         return res.status(500).send(constant.MONGODB_ERROR);
@@ -52,8 +52,8 @@ router.get('/sort/:colName/:colOrder', productService.sendActivities, async (req
         return res.status(400).send(error.details[0].message);
 
     try {
-        const productResolve = await productService.sortProducts(colName, colOrder);
-        return res.json(productResolve);
+        const result = await productService.sortProducts(colName, colOrder);
+        return res.json(result);
     } catch (err) {
         console.log({ message: err });
         return res.status(500).send(constant.MONGODB_ERROR);
@@ -71,8 +71,8 @@ router.get('/filter/:fromPrice/:toPrice', productService.sendActivities, async (
         return res.status(400).send(error.details[0].message);
 
     try {
-        const productResolve = await productService.filterProducts(fromPrice, toPrice);
-        return res.json(productResolve);
+        const result = await productService.filterProducts(fromPrice, toPrice);
+        return res.json(result);
     } catch (err) {
         console.log({ message: err });
         return res.status(500).send(constant.MONGODB_ERROR);

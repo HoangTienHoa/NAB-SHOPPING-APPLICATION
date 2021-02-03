@@ -6,8 +6,8 @@ const config = require('../config');
 //Get all products
 const getAllProducts = async () => {
     try {
-        const productResolve = await productRepository.find();
-        return productResolve;
+        const result = await productRepository.find();
+        return result;
     } catch (err) {
         throw err;
     }
@@ -16,8 +16,8 @@ const getAllProducts = async () => {
 //Get a product
 const getAProduct = async (productId) => {
     try {
-        const productResolve = await productRepository.findOne(productId);
-        return productResolve;
+        const result = await productRepository.findOne(productId);
+        return result;
     } catch (err) {
         throw err;
     }
@@ -26,8 +26,8 @@ const getAProduct = async (productId) => {
 //Save a product
 const saveAProduct = async (product) => {
     try {
-        const productResolve = await productRepository.save(product);
-        return productResolve;
+        const result = await productRepository.save(product);
+        return result;
     } catch (err) {
         throw err;
     }
@@ -36,8 +36,8 @@ const saveAProduct = async (product) => {
 //Delete all products
 const deleteAllProducts = async () => {
     try {
-        const productResolve = await productRepository.deleteMany();
-        return productResolve;
+        const result = await productRepository.deleteMany();
+        return result;
     } catch (err) {
         throw err;
     }
@@ -46,8 +46,8 @@ const deleteAllProducts = async () => {
 //Search products by name, branch, color
 const searchProducts = async (info) => {
     try {
-        const productResolve = await productRepository.findProducts(info);
-        return productResolve;
+        const result = await productRepository.findProducts(info);
+        return result;
     } catch (err) {
         throw err;
     }
@@ -56,8 +56,8 @@ const searchProducts = async (info) => {
 //Sort products by column
 const sortProducts = async (colName, colOrder) => {
     try {
-        const productResolve = await productRepository.sortProducts(colName, colOrder);
-        return productResolve;
+        const result = await productRepository.sortProducts(colName, colOrder);
+        return result;
     } catch (err) {
         throw err;
     }
@@ -65,8 +65,8 @@ const sortProducts = async (colName, colOrder) => {
 //Filter products by price
 const filterProducts = async (fromPrice, toPrice) => {
     try {
-        const productResolve = await productRepository.filterProducts(fromPrice, toPrice);
-        return productResolve;
+        const result = await productRepository.filterProducts(fromPrice, toPrice);
+        return result;
     } catch (err) {
         throw err;
     }
@@ -75,8 +75,8 @@ const filterProducts = async (fromPrice, toPrice) => {
 //Update a product
 const updateProduct = async (product) => {
     try {
-        const productResolve = await productRepository.updateOne(product);
-        return productResolve;
+        const result = await productRepository.updateOne(product);
+        return result;
     } catch (err) {
         throw err;
     }

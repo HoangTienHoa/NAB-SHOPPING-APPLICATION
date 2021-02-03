@@ -7,8 +7,8 @@ const constant = require('./order.constant');
 //Show all orders
 router.get('/', async (req, res) => {
     try {
-        const orderResolve = await orderService.getAllOrders();
-        return res.json(orderResolve);
+        const result = await orderService.getAllOrders();
+        return res.json(result);
     } catch (err) {
         console.log({ message: err });
         return res.status(500).send(constant.MONGODB_ERROR);
@@ -18,8 +18,8 @@ router.get('/', async (req, res) => {
 //Save an order
 router.post('/', async (req, res) => {
     try {
-        const orderResolve = await orderService.saveAnOrder(req.body.order);
-        return res.status(200).json(orderResolve);
+        const result = await orderService.saveAnOrder(req.body.order);
+        return res.status(201).json(result);
     } catch (err) {
         console.log({ message: err });
         return res.status(500).send(constant.MONGODB_ERROR);

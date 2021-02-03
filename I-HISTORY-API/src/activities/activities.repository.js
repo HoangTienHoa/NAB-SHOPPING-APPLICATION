@@ -1,8 +1,8 @@
 const Activities = require('./activities.model');
 
 const find = async () => {
-    const resolve = await Activities.find();
-    return resolve;
+    const result = await Activities.find();
+    return result;
 };
 const save = async (activityData) => {
     const activity = new Activities({
@@ -11,8 +11,8 @@ const save = async (activityData) => {
     });
 
     try {
-        const resolve = await activity.save();
-        return resolve;
+        const result = await activity.save();
+        return result;
     } catch (err) {
         throw err;
     }

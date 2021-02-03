@@ -4,8 +4,8 @@ const config = require('../config');
 //Get all activities
 const getAllActivities = async () => {
     try {
-        const resolve = await activityRepository.find();
-        return resolve;
+        const result = await activityRepository.find();
+        return result;
     } catch (err) {
         throw err;
     }
@@ -18,8 +18,8 @@ const saveActivity = async (customerId, action) => {
             customerId,
             action
         }
-        const resolve = await activityRepository.save(activity);
-        return resolve;
+        const result = await activityRepository.save(activity);
+        return result;
     } catch (err) {
         throw err;
     }
@@ -29,4 +29,4 @@ const consumerSaveActivitiesEvent = () => {
     console.log('consumer for Save Activities is listening');
     KafkaConsumer.intiConnectSubscribeRun(config.TOPIC_SAVE_ACTIVITIES, saveActivity);
 }
-module.exports = { getAllActivities, consumerSaveActivitiesEvent };
+module.exports = { getAllActivities, saveActivity, consumerSaveActivitiesEvent };

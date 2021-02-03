@@ -3,6 +3,7 @@ NodeJS Development Challenge
 
 ● A high-level solution diagram for the components/infrastructure design if
 any.
+
     See High_Level_Design.png
 
     Overview: 
@@ -19,6 +20,7 @@ any.
                 This use ihistory DB
 
 ● Sequence diagram for a specific workflow.
+
     See Sequence_Diagram.png
 
 ● Entity relationship diagram for the database.
@@ -66,12 +68,14 @@ any.
     #3 This project apply functional programming design patterns. Because we follow Microservice Architecture.
     #4 Use distributed messaging system like Kafka to demonstrate Asynchronous comminication.
     #5 Apply Clean code, DRY, KISS for make code clean, easier to maintain and expands.
-
+    #6 Wrapper Database. We can use onther database without change the code alot.
     
 
 ● Code folder structure and the libraries / frameworks being used.
+
     About structure:
-    Three services are the same structure. Show I will talk about the main service is I-COMMERSE-API.
+        Three services are the same structure. Show I will talk about the main service is I-COMMERSE-API.
+
     NAB-SHOPPING-APPLICATION (The whole project)
         I-CALL-CENTER-API
         I-HISTORY-API
@@ -115,6 +119,7 @@ any.
 
 ● All the required steps in order to get the applications run on local
 computer.
+
     # First Terminal
         Plese go to .evn file. 
             Find constant DB_LOCAL_CONNECTION and put your local mongo DB link.
@@ -123,11 +128,13 @@ computer.
         cd I-COMMERCE-API
         npm i
         npm start
+
     # Second Terminal
         Plese go to .evn file. Find constant DB_LOCAL_CONNECTION and put your local mongo DB link.
         cd I-CALL-CENTER-API
         npm i
         npm start
+
     # Third Terminal
         Plese go to .evn file. 
             Find constant DB_LOCAL_CONNECTION and put your local mongo DB link.
@@ -136,10 +143,14 @@ computer.
         cd I-HISTORY-API
         npm i
         npm start
+
 ● Test
-    Open terminal in each service and run this command npm run test
+    Open terminal in each service and run this command 
+        npm run test
+        npm run testCoverage
 
 ● CURL commands to verify the APIs
+
     I-COMMERCE-API
         Show all products:
             Path: /

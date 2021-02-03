@@ -1,13 +1,13 @@
 const Product = require('./product.model');
 
 const find = async () => {
-    const productResolve = await Product.find();
-    return productResolve;
+    const result = await Product.find();
+    return result;
 };
 
 const findOne = async (productId) => {
-    const productResolve = await Product.findOne({ id: productId });
-    return productResolve;
+    const result = await Product.findOne({ id: productId });
+    return result;
 };
 
 const save = async (productData) => {
@@ -21,8 +21,8 @@ const save = async (productData) => {
     });
 
     try {
-        const productResolve = await product.save();
-        return productResolve;
+        const result = await product.save();
+        return result;
     } catch (err) {
         throw err;
     }
@@ -30,8 +30,8 @@ const save = async (productData) => {
 
 const deleteMany = async () => {
     try {
-        const productResolve = await Product.deleteMany({});
-        return productResolve;
+        const result = await Product.deleteMany({});
+        return result;
     } catch (err) {
         throw err;
     }
@@ -39,7 +39,7 @@ const deleteMany = async () => {
 
 const findProducts = async (info) => {
     try {
-        const productResolve = await Product.find(
+        const result = await Product.find(
             {
                 $or:
                     [
@@ -48,7 +48,7 @@ const findProducts = async (info) => {
                         { color: { '$regex': info, '$options': 'i' } },
                     ]
             });
-        return productResolve;
+        return result;
     } catch (err) {
         throw err;
     }
@@ -58,8 +58,8 @@ const sortProducts = async (colName, colOrder) => {
     try {
         const sort = {};
         sort[colName] = colOrder;
-        const productResolve = await Product.find().sort(sort);
-        return productResolve;
+        const result = await Product.find().sort(sort);
+        return result;
     } catch (err) {
         throw err;
     }
@@ -67,8 +67,8 @@ const sortProducts = async (colName, colOrder) => {
 
 const filterProducts = async (fromPrice, toPrice) => {
     try {
-        const productResolve = await Product.find({ price: { $gte: fromPrice, $lte: toPrice } });
-        return productResolve;
+        const result = await Product.find({ price: { $gte: fromPrice, $lte: toPrice } });
+        return result;
     } catch (err) {
         throw err;
     }
@@ -76,7 +76,7 @@ const filterProducts = async (fromPrice, toPrice) => {
 
 const updateOne = async (product) => {
     try {
-        const productResolve = await Product.updateOne({ id: product.id },
+        const result = await Product.updateOne({ id: product.id },
             {
                 $set: {
                     name: product.name,
@@ -89,7 +89,7 @@ const updateOne = async (product) => {
                     modifiedAt: product.modifiedAt
                 }
             });
-        return productResolve;
+        return result;
     } catch (err) {
         throw err;
     }
