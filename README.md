@@ -146,6 +146,7 @@ computer.
 
 ● Test
     Open terminal in each service and run this command 
+    
         npm run test
         npm run testCoverage
 
